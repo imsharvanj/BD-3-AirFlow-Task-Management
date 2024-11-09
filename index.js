@@ -31,8 +31,9 @@ app.get('/tasks', (req, res) => {
 });
 
 app.get('/tasks/sort-by-priority', (req, res) => {
-  let sortedTasks = tasks.sort((a, b) => a.priority - b.priority);
-  res.json(tasks);
+  let tasksCopy = tasks.slice();
+  let sortedTasks = tasksCopy.sort((a, b) => a.priority - b.priority);
+  res.json(sortedTasks);
 });
 
 app.get('/tasks/edit-priority', (req, res) => {
