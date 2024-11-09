@@ -55,8 +55,8 @@ app.get('/tasks/edit-text', (req, res) => {
 
 app.get('/tasks/delete', (req, res) => {
   let taskId = parseInt(req.query.taskId);
-  let filteredTasks = tasks.filter((task) => task.taskId != taskId);
-  res.json(filteredTasks);
+  let tasks = tasks.filter((task) => task.taskId != taskId);
+  res.json(tasks);
 });
 
 app.get('/tasks/filter-by-priority', (req, res) => {
