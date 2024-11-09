@@ -17,8 +17,12 @@ app.get('/tasks/add', (req, res) => {
   let taskId = parseInt(req.query.taskId);
   let text = req.query.text;
   let priority = parseInt(req.query.priority);
-  let newTask = { taskId: taskId, text: text, priority: priority };
-  tasks.push(newTask);
+  let taskExists = tasks.some(task => task.taskId === taskId);
+  if (!taskExists) {
+    let newTask = { taskId: taskId, text: text, priority: priority };
+    tasks.push(newTask);
+  }
+
   res.json(tasks);
 });
 
@@ -55,7 +59,7 @@ app.get('/tasks/edit-text', (req, res) => {
 
 app.get('/tasks/delete', (req, res) => {
   let taskId = parseInt(req.query.taskId);
-  let tasks = tasks.filter((task) => task.taskId != taskId);
+  tasks = tasks.filter((task) => task.taskId != taskId);
   res.json(tasks);
 });
 
